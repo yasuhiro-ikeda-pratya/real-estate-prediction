@@ -1,6 +1,11 @@
 #!/bin/bash
 
+# 学習データをS3からローカルにコピー
 aws s3 cp s3://${S3_BUCKET_NAME}/data/train/df_train.csv /mnt/app/data
+
+# 学習スクリプトを実行
 python ./train.py --data_dir /mnt/app/data --model_dir /mnt/app/models
+
+# 学習済みモデルをローカルからS3にコピー
 aws s3 cp /mnt/app/models/model.pkl s3://${S3_BUCKET_NAME}/models/
 aws s3 cp /mnt/app/models/preprocessor.pkl s3://${S3_BUCKET_NAME}/models/
