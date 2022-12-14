@@ -10,14 +10,6 @@ class PreProcessor(object):
     def __init__(self):
         self.d_mean_values = {}
 
-    def save(self, model_dir):
-        with open(os.path.join(model_dir, "preprocessor.pkl"), "wb") as f:
-            pickle.dump(self, f)
-
-    def load(self, model_dir):
-        with open(os.path.join(model_dir, "preprocessor.pkl"), "rb") as f:
-            preprocessor_data = pickle.load(f)
-            self.d_mean_values = preprocessor_data.d_mean_values
 
     # 建築年
     def wareki_to_seireki(self, x):
